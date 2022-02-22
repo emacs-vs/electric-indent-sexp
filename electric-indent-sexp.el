@@ -7,7 +7,7 @@
 ;; Description: Automatically indent entire balanced expression block.
 ;; Keyword: indent sexp electric
 ;; Version: 0.1.0
-;; Package-Requires: ((emacs "24.3"))
+;; Package-Requires: ((emacs "24.4"))
 ;; URL: https://github.com/jcs-elpa/electric-indent-sexp
 
 ;; This file is NOT part of GNU Emacs.
