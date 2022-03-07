@@ -6,7 +6,12 @@
 
 [![CI](https://github.com/jcs-elpa/electric-indent-sexp/actions/workflows/test.yml/badge.svg)](https://github.com/jcs-elpa/electric-indent-sexp/actions/workflows/test.yml)
 
+Indent while inserting indent character, see variable `electric-indent-chars`;
+thus, this works with `electric-indent-mode`.
+
 ## 🔨 Usage
+
+Put the following code in your `init.el` file
 
 ```el
 (electric-indent-sexp 1)
