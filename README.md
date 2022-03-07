@@ -9,6 +9,9 @@
 Indent while inserting indent character, see variable `electric-indent-chars`;
 thus, this works with `electric-indent-mode`.
 
+*P.S. The behaviour is inspired by [Visual Studio](https://visualstudio.microsoft.com/) (not VSCode)
+made by [Microsoft](https://www.microsoft.com/).*
+
 ## 🔨 Usage
 
 Put the following code in your `init.el` file
