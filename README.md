@@ -4,7 +4,7 @@
 # electric-indent-sexp
 > Automatically indent entire balanced expression block
 
-[![CI](https://github.com/jcs-elpa/electric-indent-sexp/actions/workflows/test.yml/badge.svg)](https://github.com/jcs-elpa/electric-indent-sexp/actions/workflows/test.yml)
+[![CI](https://github.com/emacs-vs/electric-indent-sexp/actions/workflows/test.yml/badge.svg)](https://github.com/emacs-vs/electric-indent-sexp/actions/workflows/test.yml)
 
 Indent while inserting indent character, see variable `electric-indent-chars`;
 thus, this works with `electric-indent-mode`.
