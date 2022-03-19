@@ -40,6 +40,44 @@
   :group 'electricity
   :link '(url-link :tag "Repository" "https://github.com/jcs-elpa/electric-indent-sexp"))
 
+(defcustom electric-indent-sexp-chars-alist
+  '((actionscript-mode     . (?\n ?\) ?\] ?\}))
+    (c-mode                . (?\n ?\) ?\] ?\}))
+    (c++-mode              . (?\n ?\) ?\] ?\}))
+    (csharp-mode           . (?\n ?\) ?\] ?\}))
+    (objc-mode             . (?\n ?\) ?\] ?\}))
+    (swift-mode            . (?\n ?\) ?\] ?\}))
+    (java-mode             . (?\n ?\) ?\] ?\}))
+    (groovy-mode           . (?\n ?\) ?\] ?\}))
+    (javascript-mode       . (?\n ?\) ?\] ?\}))
+    (js-mode               . (?\n ?\) ?\] ?\}))
+    (js2-mode              . (?\n ?\) ?\] ?\}))
+    (js3-mode              . (?\n ?\) ?\] ?\}))
+    (json-mode             . (?\n ?\) ?\] ?\}))
+    (rjsx-mode             . (?\n ?\) ?\] ?\}))
+    (typescript-mode       . (?\n ?\) ?\] ?\}))
+    (lisp-mode             . (?\n ?\)))
+    (lisp-interaction-mode . (?\n ?\)))
+    (emacs-lisp-mode       . (?\n ?\)))
+    (cask-mode             . (?\n ?\)))
+    (eask-mode             . (?\n ?\)))
+    (scala-mode            . (?\n ?\) ?\] ?\}))
+    (rust-mode             . (?\n ?\) ?\] ?\}))
+    (rustic-mode           . (?\n ?\) ?\] ?\}))
+    (go-mode               . (?\n ?\) ?\] ?\}))
+    (css-mode              . (?\n ?\) ?\] ?\}))
+    (scss-mode             . (?\n ?\) ?\] ?\}))
+    (php-mode              . (?\n ?\) ?\] ?\}))
+    (web-mode              . (?\n ?\) ?\] ?\}))
+    (sh-mode               . (?\n ?\) ?\] ?\})))
+  "Alist of indent chars to update to each major-mode; (major-mode . chars)."
+  :type 'alist
+  :group 'electric-indent-sexp)
+
+;;;###autoload
+(defvar electric-indent-sexp--chars-default electric-indent-chars
+  "Store default indent characters.")
+
 (defun electric-indent-sexp--post-self-insert (fn &rest args)
   "Execute around function `electric-indent-post-self-insert-function'."
   (when (apply fn args)
@@ -48,13 +86,21 @@
                  (end (point)))
         (unless (= beg end) (indent-region beg end))))))
 
+(defun electric-indent-sexp-update-chars ()
+  "Update `electric-indent-chars' according to `electric-indent-sexp-chars-alist'."
+  (setq-local electric-indent-chars
+              (or (cdr (assq major-mode electric-indent-sexp-chars-alist))
+                  electric-indent-sexp--chars-default)))  ; default
+
 (defun electric-indent-sexp--enable ()
   "Enable function `electric-indent-sexp-mode'."
-  (advice-add 'electric-indent-post-self-insert-function :around #'electric-indent-sexp--post-self-insert))
+  (advice-add 'electric-indent-post-self-insert-function :around #'electric-indent-sexp--post-self-insert)
+  (add-hook 'after-change-major-mode-hook #'electric-indent-sexp-update-chars))
 
 (defun electric-indent-sexp--disable ()
   "Disable function `electric-indent-sexp-mode'."
-  (advice-remove 'electric-indent-post-self-insert-function #'electric-indent-sexp--post-self-insert))
+  (advice-remove 'electric-indent-post-self-insert-function #'electric-indent-sexp--post-self-insert)
+  (remove-hook 'after-change-major-mode-hook #'electric-indent-sexp-update-chars))
 
 ;;;###autoload
 (define-minor-mode electric-indent-sexp-mode
