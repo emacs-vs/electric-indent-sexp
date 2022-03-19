@@ -12,12 +12,14 @@ thus, this works with `electric-indent-mode`.
 *P.S. The behaviour is inspired by [Visual Studio](https://visualstudio.microsoft.com/) (not VSCode)
 made by [Microsoft](https://www.microsoft.com/).*
 
-## 🔨 Usage
+## 💾 Quickstart
 
 Put the following code in your `init.el` file
 
 ```el
-(electric-indent-sexp 1)
+(leaf electric-indent-sexp
+  :hook (electric-indent-mode-hook . electric-indent-sexp-mode)
+  :init (setq electric-indent-sexp-auto-chars t))
 ```
 
 ## Contribute
