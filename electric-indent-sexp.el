@@ -74,7 +74,6 @@
   :type 'alist
   :group 'electric-indent-sexp)
 
-;;;###autoload
 (defvar electric-indent-sexp--chars-default electric-indent-chars
   "Store default indent characters.")
 
