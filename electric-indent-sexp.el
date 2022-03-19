@@ -7,7 +7,7 @@
 ;; Description: Automatically indent entire balanced expression block.
 ;; Keyword: indent sexp electric
 ;; Version: 0.1.0
-;; Package-Requires: ((emacs "24.4"))
+;; Package-Requires: ((emacs "25.1"))
 ;; URL: https://github.com/jcs-elpa/electric-indent-sexp
 
 ;; This file is NOT part of GNU Emacs.
@@ -32,6 +32,8 @@
 
 ;;; Code:
 
+(require 'subr-x)
+
 (defgroup electric-indent-sexp nil
   "Automatically indent entire balanced expression block."
   :prefix "electric-indent-sexp-"
@@ -39,17 +41,12 @@
   :link '(url-link :tag "Repository" "https://github.com/jcs-elpa/electric-indent-sexp"))
 
 (defun electric-indent-sexp--post-self-insert (fn &rest args)
-  "Execut around function `electric-indent-post-self-insert-function'."
+  "Execute around function `electric-indent-post-self-insert-function'."
   (when (apply fn args)
     (let ((inhibit-message t) message-log-max)
-      (let ((end (point))
-            (beg (save-excursion
-                   (if (memq last-command-event electric-indent-chars)
-                       (ignore-errors (backward-sexp))
-                     (ignore-errors (forward-sexp)))
-                   (point))))
-        (unless (= beg end)
-          (indent-region beg end))))))
+      (when-let ((beg (save-excursion (ignore-errors (backward-sexp)) (point)))
+                 (end (point)))
+        (unless (= beg end) (indent-region beg end))))))
 
 (defun electric-indent-sexp--enable ()
   "Enable function `electric-indent-sexp-mode'."
