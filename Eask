@@ -1,6 +1,7 @@
 (package "electric-indent-sexp"
          "0.1.0"
          "Automatically indent entire balanced expression block")
+
 (package-file "electric-indent-sexp.el")
 
 (source "melpa")
