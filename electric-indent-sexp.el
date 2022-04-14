@@ -106,7 +106,8 @@
 (defun electric-indent-sexp--enable ()
   "Enable function `electric-indent-sexp-mode'."
   (advice-add 'electric-indent-post-self-insert-function :around #'electric-indent-sexp--post-self-insert)
-  (add-hook 'after-change-major-mode-hook #'electric-indent-sexp-update-chars))
+  (add-hook 'after-change-major-mode-hook #'electric-indent-sexp-update-chars)
+  (electric-indent-sexp-update-chars))
 
 (defun electric-indent-sexp--disable ()
   "Disable function `electric-indent-sexp-mode'."
