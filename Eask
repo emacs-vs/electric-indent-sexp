@@ -3,7 +3,7 @@
          "Automatically indent entire balanced expression block")
 
 (website-url "https://github.com/jcs-elpa/electric-indent-sexp")
-(keywords "indent" "sexp" "electric")
+(keywords "convenience" "indent" "sexp" "electric")
 
 (package-file "electric-indent-sexp.el")
 
