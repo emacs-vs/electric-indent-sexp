@@ -7,7 +7,7 @@
 ;; URL: https://github.com/jcs-elpa/electric-indent-sexp
 ;; Version: 0.1.0
 ;; Package-Requires: ((emacs "25.1"))
-;; Keywords: indent sexp electric
+;; Keywords: convenience indent sexp electric
 
 ;; This file is NOT part of GNU Emacs.
 
