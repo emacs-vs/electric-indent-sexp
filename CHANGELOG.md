@@ -8,5 +8,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 0.1.0 (Unreleased)
 > Released N/A
 
+* Depends on `msgu` for message control (641b0307907eca00ee50429a99169e20ab363838)
 * Add alist `electric-indent-sexp-chars-alist` to update `electric-indent-chars` (a81e41728a072829f658b472e100ba014f26a165)
 * Initial release
