@@ -5,8 +5,8 @@
 
 ;; Author: Shen, Jen-Chieh <jcs090218@gmail.com>
 ;; URL: https://github.com/jcs-elpa/electric-indent-sexp
-;; Version: 0.1.0
-;; Package-Requires: ((emacs "25.1"))
+;; Version: 0.1.1
+;; Package-Requires: ((emacs "26.1") (msgu "0.1.0"))
 ;; Keywords: convenience indent sexp electric
 
 ;; This file is NOT part of GNU Emacs.
@@ -32,6 +32,8 @@
 ;;; Code:
 
 (require 'subr-x)
+
+(require 'msgu)
 
 (defgroup electric-indent-sexp nil
   "Automatically indent entire balanced expression block."
@@ -81,15 +83,11 @@
 (defvar electric-indent-sexp--chars-default electric-indent-chars
   "Store default indent characters.")
 
-(defmacro electric-indent-sexp--mute-apply (&rest body)
-  "Execute BODY without message."
-  (declare (indent 0) (debug t))
-  `(let ((inhibit-message t) message-log-max) ,@body))
-
 (defun electric-indent-sexp--post-self-insert (fn &rest args)
   "Execute around function `electric-indent-post-self-insert-function'."
+  (electric-indent-sexp-update-chars)
   (when (apply fn args)
-    (electric-indent-sexp--mute-apply
+    (msgu-silent
       (when-let ((beg (save-excursion (ignore-errors (backward-sexp)) (point)))
                  (end (point)))
         (unless (= beg end) (indent-region beg end))))))
@@ -97,7 +95,7 @@
 ;;;###autoload
 (defun electric-indent-sexp-update-chars ()
   "Update `electric-indent-chars' according to `electric-indent-sexp-chars-alist'."
-  (when electric-indent-sexp-auto-chars
+  (when (and electric-indent-sexp-mode electric-indent-sexp-auto-chars)
     (setq-local electric-indent-chars
                 (or (cdr (assq major-mode electric-indent-sexp-chars-alist))
                     electric-indent-sexp--chars-default))))  ; default
