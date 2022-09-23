@@ -113,7 +113,7 @@
 
 ;;;###autoload
 (define-minor-mode electric-indent-sexp-mode
-  "Minor mode 'electric-indent-sexp-mode'."
+  "Minor mode `electric-indent-sexp-mode'."
   :global t
   :require 'electric-indent-sexp-mode
   :group 'electric-indent-sexp
