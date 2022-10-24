@@ -52,6 +52,7 @@
     (groovy-mode           . (?\n ?\) ?\] ?\}))
     (javascript-mode       . (?\n ?\) ?\] ?\}))
     (js-mode               . (?\n ?\) ?\] ?\}))
+    (js-jsx-mode           . (?\n ?\) ?\] ?\}))
     (js2-mode              . (?\n ?\) ?\] ?\}))
     (js3-mode              . (?\n ?\) ?\] ?\}))
     (json-mode             . (?\n ?\) ?\] ?\}))
