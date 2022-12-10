@@ -7,6 +7,8 @@
 
 (package-file "electric-indent-sexp.el")
 
+(script "test" "echo \"Error: no test specified\" && exit 1")
+
 (source "melpa")
 (source "jcs-elpa")
 
