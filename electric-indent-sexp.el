@@ -1,6 +1,6 @@
 ;;; electric-indent-sexp.el --- Automatically indent entire balanced expression block  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2024  Shen, Jen-Chieh
+;; Copyright (C) 2022-2025 Shen, Jen-Chieh
 ;; Created date 2022-02-22 17:10:55
 
 ;; Author: Shen, Jen-Chieh <jcs090218@gmail.com>
