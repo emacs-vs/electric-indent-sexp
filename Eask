@@ -1,3 +1,5 @@
+;; -*- mode: eask; lexical-binding: t -*-
+
 (package "electric-indent-sexp"
          "0.1.0"
          "Automatically indent entire balanced expression block")
